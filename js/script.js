@@ -50,3 +50,12 @@ function clearDisplayErrors() {
   errorBox.textContent = "";
   errorBox.style.display = "none";
 }
+
+// --- AUTOMATION ENGINE ---
+// 1. Run the function immediately when the DOM layout is loaded stable
+document.addEventListener("DOMContentLoaded", () => {
+  getRandomQuote();
+
+  // 2. Set an infinite recurring timer loop (5000ms = 5 seconds)
+  setInterval(getRandomQuote, 5000);
+});
