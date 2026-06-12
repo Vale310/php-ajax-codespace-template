@@ -4,7 +4,11 @@
 
 // --- GLOBAL DEVELOPMENT SETTINGS ---
 // Modes available: "console" (quiet logging) or "screen" (renders error box in UI)
-const ERROR_MODE = "screen"; 
+const ERROR_MODE = "screen";
+
+// Typography configuration rules
+const fonts = ["Qwitcher Grypen", "Tulpen One", "Shadows Into Light"];
+var rotating = 0; // Tracks which font index to apply next
 
 document.getElementById("fetchData").addEventListener("click", getRandomQuote);
 
@@ -21,6 +25,13 @@ function getRandomQuote() {
     .then((data) => {
       const quoteContainer = document.getElementById("result");
       quoteContainer.innerHTML = data;
+
+      // --- TYPOGRAPHY LOOP ROTATION ---
+      // 1. Set the element's inline font-family to the current font index matching our counter
+      quoteContainer.style.fontFamily = fonts[rotating];
+
+      // 2. Add 1 to counter. The % remainder operator forces it to cycle back to 0 when it hits the limit!
+      rotating = (rotating + 1) % fonts.length;
 
       // --- TRANSITION CONTROLLER ---
       // Remove the class, force a browser reflow trick, then re-add the class
