@@ -15,7 +15,9 @@ document.getElementById("fetchData").addEventListener("click", getRandomQuote);
 function getRandomQuote() {
   clearDisplayErrors();
 
-  fetch("server.php")
+  // OLD LOCAL WAY: fetch("server.php")
+  // NEW REMOTE API WAY:
+  fetch("https://newmanix.com/classes/it102/random_quotes.php")
     .then((res) => {
       if (!res.ok) {
         throw new Error(`HTTP Error Status: ${res.status}`);
